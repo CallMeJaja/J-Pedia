@@ -3,7 +3,7 @@
     <div class="flex relative justify-between my-4 mx-6 min-w-fit">
       <span
         v-if="isLoading"
-        class="iconify text-md text-gray-700 mx-2 absolute animate-spin mt-3"
+        class="iconify hidden text-md text-gray-700 mx-2 absolute animate-spin mt-3"
         data-icon="streamline:interface-arrows-synchronize-arrows-loading-load-sync-synchronize-arrow-reload"
       ></span>
       <input
@@ -112,6 +112,7 @@ export default {
     },
 
     async updateTask() {
+      this.isLoading = true
       await this.$store.dispatch('task/updateTask', this.editedTask)
       console.log(this.editedTask)
       this.onEdit = false
@@ -130,5 +131,11 @@ export default {
     this.fetchTask()
     this.setupChannel()
   },
+
+  updated() {
+    // this.isLoading = false
+  },
+
+  beforeDestroy() {},
 }
 </script>
